@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Desirée Treinamentos desenvolve lideranças e equipes que fazem a estratégia virar resultado, com um trabalho desenhado a partir da realidade de cada organização.">
+<meta name="theme-color" content="#F1F7F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1E20" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://desireetreinamentos.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Desirée Treinamentos">
+<meta property="og:title" content="Desirée Treinamentos — Desenvolvimento de lideranças e equipes">
+<meta property="og:description" content="Desirée Treinamentos desenvolve lideranças e equipes que fazem a estratégia virar resultado, com um trabalho desenhado a partir da realidade de cada organização.">
+<meta property="og:url" content="https://desireetreinamentos.com.br/">
+<meta property="og:image" content="https://desireetreinamentos.com.br/images/hero-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Desirée Treinamentos | Desenvolvimento de lideranças e equipes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Figtree:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --bg:#F1F7F6;
+    --surface:#FBFDFF;
+    --surface-2:#E6F0EF;
+    --ink:#123A3E;
+    --ink-soft:#4E6E6C;
+    --accent:#157079;
+    --accent-ink:#0F565E;
+    --accent-tint:#DFEDEE;
+    --accent-bright:#4FB3BC;
+    --line:#D8E6E4;
+    --shadow:0 1px 2px rgba(34,40,42,.04),0 8px 30px rgba(34,40,42,.06);
+    --radius:6px;
+    --ease:cubic-bezier(.165,.84,.44,1);
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A1E20;
+      --surface:#10282C;
+      --surface-2:#153A3E;
+      --ink:#E6EFF7;
+      --ink-soft:#92A6B7;
+      --accent:#4FB3BC;
+      --accent-ink:#8FD4DA;
+      --accent-tint:#123A3E;
+      --accent-bright:#6FC9D1;
+      --line:#21403F;
+      --shadow:0 1px 2px rgba(0,0,0,.25),0 10px 34px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A1E20;
+    --surface:#10282C;
+    --surface-2:#153A3E;
+    --ink:#E6EFF7;
+    --ink-soft:#92A6B7;
+    --accent:#4FB3BC;
+    --accent-ink:#8FD4DA;
+    --accent-tint:#123A3E;
+    --accent-bright:#6FC9D1;
+    --line:#21403F;
+    --shadow:0 1px 2px rgba(0,0,0,.25),0 10px 34px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Figtree",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:clamp(16px,1vw+14px,18px);line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.08;
+    text-wrap:balance;letter-spacing:-.01em;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-ink);font-weight:600}
+  .muted{color:var(--ink-soft)}
+
+  /* top bar */
+  header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:"Fraunces",serif;font-weight:500;font-size:1.15rem;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:.55rem}
+  .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);flex:none}
+  .navlinks{display:flex;gap:1.6rem;align-items:center;font-size:.92rem}
+  .navlinks a{text-decoration:none;color:var(--ink-soft)}
+  .navlinks a:hover{color:var(--ink)}
+  .toggle{background:none;border:1px solid var(--line);color:var(--ink-soft);
+    width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;line-height:1;
+    display:grid;place-items:center;flex:none}
+  .toggle:hover{color:var(--ink);border-color:var(--ink-soft)}
+  @media(max-width:720px){.navlinks a:not(.btn){display:none}}
+
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border-radius:8px;
+    font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;border:1px solid transparent;
+    transition:transform .3s var(--ease),background .2s ease,color .2s ease,box-shadow .3s var(--ease)}
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn-primary{background:var(--accent);color:#fff}
+  :root[data-theme="dark"] .btn-primary,
+  :root:not([data-theme="light"]) .btn-primary{color:#0a1e20}
+  @media (prefers-color-scheme:dark){.btn-primary{color:#0a1e20}}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-ink)}
+
+  section{padding:clamp(56px,9vw,110px) 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  .sec-head{max-width:44ch;margin-bottom:2.6rem}
+  .sec-head .eyebrow{display:inline-flex;align-items:center;gap:.65rem}
+  .sec-head .eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+  .sec-head p{margin-top:.9rem;color:var(--ink-soft)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;min-height:min(88vh,780px);display:flex;align-items:flex-end;
+    padding-top:clamp(96px,13vh,160px);padding-bottom:clamp(44px,6vw,80px)}
+  .hero .slides{position:absolute;inset:0;z-index:0;isolation:isolate}
+  .hero .slides::after{content:"";position:absolute;inset:0;background:var(--accent);mix-blend-mode:color;pointer-events:none}
+  .hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
+    filter:grayscale(1) contrast(1.07) brightness(.82);
+    transition:opacity 1.15s ease;animation:kb 16s ease-in-out infinite alternate}
+  .hero .slide.is-on{opacity:1}
+  @keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.13)}}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(8,18,30,.32),rgba(8,18,30,.74) 82%)}
+  #net{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:.5}
+  .hero .hero-content{position:relative;z-index:3;color:#fff}
+  .hero .eyebrow{color:#bfe6e8}
+  .hero h1{color:#fff}
+  .hero .lede{color:rgba(255,255,255,.88)}
+  .hero .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+  .hero .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
+  .dots{display:flex;gap:.55rem;margin-top:2.1rem}
+  .dot{width:34px;height:4px;border-radius:2px;border:0;background:rgba(255,255,255,.4);cursor:pointer;padding:0;transition:background .3s}
+  .dot.is-on{background:#fff}
+  @media (prefers-reduced-motion:reduce){.hero .slide{animation:none}}
+  .hero h1{font-size:clamp(2.7rem,7.2vw,5.6rem);max-width:15ch;margin-top:1.2rem;letter-spacing:-.028em;font-weight:400}
+  .hero .lede{margin-top:1.5rem;max-width:52ch;font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--ink-soft)}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.2rem}
+  .hero-note{margin-top:2.6rem;display:flex;align-items:center;gap:.7rem;color:var(--ink-soft);font-size:.9rem}
+  .hero-note .rule{height:1px;width:42px;background:var(--line)}
+
+  /* situation selector */
+  .picker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:.8rem}
+  .sit{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.15rem;cursor:pointer;color:var(--ink);font:inherit;font-size:.98rem;line-height:1.4;
+    display:flex;gap:.75rem;align-items:flex-start;transition:border-color .18s,background .18s,transform .18s}
+  .sit:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:var(--shadow)}
+  .sit .mk{width:10px;height:10px;border-radius:3px;background:var(--accent-tint);border:1px solid var(--accent);
+    margin-top:.35rem;flex:none;transition:background .18s}
+  .sit[aria-pressed="true"]{background:var(--accent-tint);border-color:var(--accent)}
+  .sit[aria-pressed="true"] .mk{background:var(--accent)}
+  .sit:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .answer{margin-top:1.6rem;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.4rem 1.5rem;min-height:92px;display:flex;flex-direction:column;justify-content:center}
+  .answer .lbl{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+  .answer .txt{margin-top:.5rem;font-family:"Fraunces",serif;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.28;color:var(--ink)}
+  .answer.is-empty .txt{color:var(--ink-soft);font-style:italic}
+  .answer .foot{margin-top:.9rem;font-size:.92rem;color:var(--ink-soft)}
+
+  /* how it works, 3 steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;counter-reset:s}
+  .step{position:relative;padding-top:1.4rem;border-top:2px solid var(--accent)}
+  .step .n{font-family:"Fraunces",serif;font-size:.95rem;color:var(--accent-ink);font-weight:600}
+  .step h3{font-size:1.3rem;margin:.5rem 0 .5rem}
+  .step p{color:var(--ink-soft);font-size:.98rem}
+
+  /* cases */
+  .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+  .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:transform .3s var(--ease),border-color .3s var(--ease)}
+  .case:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .case .who{font-family:"Fraunces",serif;font-size:1.3rem;margin-bottom:.15rem}
+  .case .tag{font-size:.8rem;color:var(--accent-ink);font-weight:600;letter-spacing:.04em}
+  .case p{margin-top:.7rem;color:var(--ink-soft);font-size:.95rem}
+
+  /* themes chips */
+  .chips{display:flex;flex-wrap:wrap;gap:.6rem}
+  .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem 1rem;font-size:.95rem}
+  .chip:hover{border-color:var(--accent)}
+
+  /* two-col generic */
+  .two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+  @media(max-width:800px){.two{grid-template-columns:1fr;gap:2rem}}
+  .reads{display:flex;flex-direction:column;gap:.6rem}
+  .read{display:flex;gap:.9rem;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+  .read .k{font-family:"Fraunces",serif;color:var(--accent-ink);font-size:1rem;flex:none}
+  .read p{font-size:.95rem}
+  .read .rt{font-weight:600;color:var(--ink)}
+
+  .who-portrait{aspect-ratio:4/5;border-radius:var(--radius);background-size:cover;background-position:center 22%;
+     border:1px solid var(--line);box-shadow:var(--shadow);background-color:var(--surface-2)}
+
+  /* stats + pull-quote (dispositivos editoriais dos benchmarks) */
+  .stats-band{background:var(--surface-2);border-top:1px solid var(--line);padding:clamp(40px,5vw,64px) 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.6rem}
+  .stat{display:flex;flex-direction:column;gap:.45rem;border-left:2px solid var(--accent);padding-left:1.05rem}
+  .stat .num{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.02;color:var(--ink);font-variant-numeric:tabular-nums}
+  .stat .lbl{font-size:.9rem;color:var(--ink-soft);max-width:27ch}
+  .pullquote-band{padding:clamp(58px,8vw,104px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pullquote{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.8rem,4vw,3rem);line-height:1.16;max-width:23ch;margin:0;color:var(--ink);letter-spacing:-.015em}
+  .pullquote .mark{color:var(--accent)}
+  .pq-attr{display:inline-block;margin-top:1.5rem;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* closing */
+  .close-cta{background:var(--accent);color:#fff;border-radius:12px;padding:clamp(2.2rem,5vw,3.6rem);
+    display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between}
+  :root[data-theme="dark"] .close-cta,:root:not([data-theme="light"]) .close-cta{color:#0a1e20}
+  @media (prefers-color-scheme:dark){.close-cta{color:#0a1e20}}
+  .close-cta h2{font-size:clamp(1.6rem,3.2vw,2.3rem);color:inherit;max-width:18ch}
+  .close-cta p{margin-top:.6rem;opacity:.85;max-width:40ch}
+  .close-cta .btn-primary{background:#fff;color:var(--accent-ink)}
+  @media (prefers-color-scheme:dark){.close-cta .btn-primary{background:#0a1e20;color:var(--accent)}}
+  :root[data-theme="dark"] .close-cta .btn-primary{background:#0a1e20;color:var(--accent)}
+
+  footer.foot{padding:2.4rem 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.88rem}
+  .foot .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.sit:hover{transform:none}
+  }
+  .draft-flag{position:fixed;bottom:14px;left:14px;z-index:30;background:var(--ink);color:var(--bg);
+    font-size:.72rem;letter-spacing:.04em;padding:.4rem .7rem;border-radius:999px;opacity:.85}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Desirée Treinamentos</div>
+    <nav class="navlinks">
+      <a href="#trabalho">Como trabalho</a>
+      <a href="#casos">Experiências</a>
+      <a href="#quem">Quem é a Desirée</a>
+      <a href="#conversa" class="btn btn-primary">Conversar</a>
+      <button class="toggle" id="themeToggle" aria-label="Alternar tema">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="slides" id="slides">
+      <div class="slide is-on" style="background-image:url('images/hero-1.jpg')"></div>
+      <div class="slide" style="background-image:url('images/hero-2.jpg')"></div>
+      <div class="slide" style="background-image:url('images/hero-3.jpg')"></div>
+    </div>
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="wrap hero-content">
+      <p class="eyebrow reveal">Desenvolvimento de lideranças e pessoas</p>
+      <h1 class="reveal">Desenvolvemos as lideranças e equipes que fazem a estratégia virar resultado.</h1>
+      <p class="lede reveal">A gente conecta liderança, comportamento e relações de trabalho à estratégia e ao resultado da sua empresa, com um trabalho desenhado a partir da sua realidade.</p>
+      <div class="cta-row reveal">
+        <a href="#conversa" class="btn btn-primary">Conversar com a Desirée</a>
+        <a href="#casos" class="btn btn-ghost">Conhecer experiências realizadas</a>
+      </div>
+      <div class="dots" id="dots">
+        <button class="dot is-on" type="button" aria-label="Imagem 1"></button>
+        <button class="dot" type="button" aria-label="Imagem 2"></button>
+        <button class="dot" type="button" aria-label="Imagem 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-band">
+    <div class="wrap stats">
+      <div class="stat reveal"><span class="num">+15 anos</span><span class="lbl">desenvolvendo lideranças e equipes</span></div>
+      <div class="stat reveal"><span class="num">Desde 2009</span><span class="lbl">à frente da Desirée Treinamentos</span></div>
+      <div class="stat reveal"><span class="num">Pessoas e processos</span><span class="lbl">o desenvolvimento ligado ao resultado da empresa</span></div>
+      <div class="stat reveal"><span class="num">Sob medida</span><span class="lbl">um trabalho desenhado a partir da realidade de cada organização</span></div>
+    </div>
+  </div>
+
+  <!-- SITUATION SELECTOR -->
+  <section id="situacao">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Por onde começar</p>
+        <h2>Qual dessas situações está mais próxima da sua empresa?</h2>
+        <p>Escolha a que mais se parece com o seu momento. A partir dela, a gente pensa junto o caminho certo para a sua empresa.</p>
+      </div>
+      <div class="picker-grid" id="picker">
+        <button class="sit" aria-pressed="false" data-a="Aqui entra um programa de desenvolvimento de líderes, preparando quem assume equipe com prática no dia a dia."><span class="mk"></span>Estamos crescendo e precisamos formar novas lideranças.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui a gente alinha o jeito de trabalhar entre as áreas, com diagnóstico de clima e acordos de equipe."><span class="mk"></span>Cada equipe ou unidade trabalha de um jeito e falta consistência.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui a Desirée trabalha liderança, relações, organização do trabalho e segurança psicológica como parte da prevenção. A avaliação técnica e o PGR/GRO seguem a NR-01, com os responsáveis de SST da organização."><span class="mk"></span>O clima e a organização do trabalho pedem atenção aos riscos psicossociais.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui entra mentoria de líderes e trabalho de propósito, ligando o desenvolvimento das pessoas à retenção."><span class="mk"></span>Precisamos reter talentos e engajar as novas gerações.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui a Desirée facilita a estratégia virar prática, com indicadores e as próprias equipes conduzindo."><span class="mk"></span>A estratégia está definida e queremos que ela chegue à rotina das pessoas.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui entra uma trilha de liderança de linha de frente, com comunicação e consistência na experiência do cliente."><span class="mk"></span>O atendimento e a experiência do cliente precisam de mais consistência.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui entra um trabalho de vendas consultivas: relação, escuta, contorno de objeções e negociação, com prática que a equipe usa no dia a dia."><span class="mk"></span>Temos produto e mercado, e a equipe de vendas precisa prospectar, negociar e converter melhor.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui a gente começa por uma conversa e um diagnóstico rápido, pra desenhar o caminho certo pra vocês."><span class="mk"></span>Queremos desenvolver o time e definir por onde começar.</button>
+      </div>
+      <div class="answer is-empty" id="answer" aria-live="polite">
+        <span class="lbl">Um caminho possível</span>
+        <span class="txt" id="answerTxt">Selecione uma situação acima para ver por onde eu começaria.</span>
+        <span class="foot" id="answerFoot">Diagnóstico · treinamento · workshop · mentoria · facilitação · jornada de desenvolvimento.</span>
+        <a class="btn btn-primary" id="answerWa" target="_blank" rel="noopener" style="display:none;margin-top:1.1rem;align-self:flex-start">Conversar sobre isso no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section id="trabalho">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Como a Desirée trabalha</p>
+        <h2>Quando entendemos a sua empresa, a intervenção nasce no ponto certo.</h2>
+        <p>Quando a gente entende primeiro, a intervenção já nasce certa para a sua empresa. Sempre a partir de quem você é, feita sob medida.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">Primeiro</span><h3>Leitura da organização</h3><p>Entendo como a empresa opera, como vende, quem são seus clientes e onde as relações de trabalho estão travadas.</p></div>
+        <div class="step"><span class="n">Depois</span><h3>Entendo a necessidade</h3><p>Escuto o que você já enxerga e somo a leitura da empresa, para o desenvolvimento render o máximo para o seu time.</p></div>
+        <div class="step"><span class="n">Então</span><h3>Construo a intervenção</h3><p>Diagnóstico, trilha, workshop, mentoria ou facilitação, desenhada para a sua realidade e com prática que as pessoas aplicam no dia a dia.</p></div>
+      </div>
+      <p class="muted" style="margin-top:1.9rem;max-width:62ch">A leitura olha três coisas de perto: a <strong style="color:var(--ink)">operação</strong> (como o trabalho acontece de fato), as <strong style="color:var(--ink)">relações entre as áreas</strong> (onde a colaboração trava) e o <strong style="color:var(--ink)">fluxo do dia a dia</strong> (onde o crescimento pressiona as pessoas).</p>
+    </div>
+  </section>
+
+  <div class="pullquote-band">
+    <div class="wrap">
+      <blockquote class="pullquote"><span class="mark">“</span>Quando estratégia e comportamento caminham juntos, o resultado se torna consistente e sustentável.<span class="mark">”</span></blockquote>
+      <span class="pq-attr">Desirée Freccia</span>
+    </div>
+  </div>
+
+  <!-- CASES -->
+  <section id="casos">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Experiências realizadas</p>
+        <h2>Empresas que confiaram o desenvolvimento das suas equipes.</h2>
+      </div>
+      <div class="cases">
+        <div class="case"><span class="tag">Indústria de tecnologia</span><div class="who">Operação industrial</div><p>Desenvolvimento comercial e de equipes numa indústria de tecnologia.</p></div>
+        <div class="case"><span class="tag">Entidade empresarial</span><div class="who">Rede de empresas</div><p>Formações de liderança e gestão de equipes, com turmas abertas e programas dentro das empresas.</p></div>
+        <div class="case"><span class="tag">Alcance nacional</span><div class="who">Diversos setores</div><p>Anos de trabalho com organizações de setores diferentes, sempre a partir da realidade de cada uma.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEMES -->
+  <section id="temas">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Temas em que posso ajudar</p>
+        <h2>São pontos de partida, moldados para a sua empresa.</h2>
+        <p>Cada um vira o que a sua empresa precisa que ele seja.</p>
+      </div>
+      <div class="chips">
+        <span class="chip">Desenvolvimento de lideranças</span>
+        <span class="chip">Gestão de equipes</span>
+        <span class="chip">Comunicação e alinhamento</span>
+        <span class="chip">Inteligência emocional e conflitos</span>
+        <span class="chip">Comunicação Não Violenta</span>
+        <span class="chip">NR-01 e segurança psicológica</span>
+        <span class="chip">Mentoria de líderes</span>
+        <span class="chip">Vendas consultivas e negociação</span>
+        <span class="chip">Experiência do cliente (CX)</span>
+        <span class="chip">Diagnóstico e leitura organizacional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT / READS -->
+  <section id="leituras">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow">Conteúdos e leituras</p>
+        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:.6rem">Material que ajuda a pensar a sua organização, livre para usar quando quiser.</h2>
+        <p class="muted" style="margin-top:1rem">Gosto de deixar valor na sua mão desde já: leituras curtas, perguntas para refletir com o seu time e mapas de pontos críticos.</p>
+      </div>
+      <div class="reads">
+        <div class="read"><span class="k">01</span><p><span class="rt">Guia de conversas difíceis para gestores.</span><br>Um roteiro de quatro passos para dar feedback e conduzir conflitos com respeito e resultado.</p></div>
+        <div class="read"><span class="k">02</span><p><span class="rt">Segurança psicológica e cultura "speak up".</span><br>Como criar um ambiente em que o erro vira aprendizado e as pessoas se sentem seguras para falar.</p></div>
+        <div class="read"><span class="k">03</span><p><span class="rt">NR‑01 na prática.</span><br>Ligar clima, liderança e a norma de um jeito aplicado no dia a dia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section id="quem">
+    <div class="wrap two">
+      <div class="who-portrait" style="background-image:url('images/desiree-portrait.jpg')"></div>
+      <div>
+        <p class="eyebrow">Quem é a Desirée</p>
+        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:.6rem">Uma consultoria boutique, experiente e próxima.</h2>
+        <p class="muted" style="margin-top:1rem">Desirée de Souza Freccia desenvolve lideranças e equipes em organizações há mais de 15 anos. À frente da Desirée Treinamentos desde 2009, ajuda cada organização a fortalecer pessoas, processos e resultados, a partir da sua realidade.</p>
+        <p class="muted" style="margin-top:1rem">Trabalha liderança, inteligência emocional e relações de trabalho de um jeito aplicado e humano: ferramentas práticas que as pessoas usam na segunda de manhã. Aqui você fala direto com quem estuda a sua empresa e conduz o trabalho.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CONVERSATION -->
+  <section id="conversa">
+    <div class="wrap">
+      <div class="close-cta">
+        <div>
+          <h2>Vamos conversar sobre o seu momento?</h2>
+          <p>Uma primeira conversa, leve e no seu tempo, para entender a sua realidade.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.7rem"><a href="https://wa.me/5548996670999?text=Oi!%20Vim%20pelo%20site%20e%20quero%20conversar%20sobre%20o%20momento%20da%20minha%20empresa." class="btn btn-primary" target="_blank" rel="noopener">Conversar no WhatsApp</a><a href="mailto:desiree@desireetreinamentos.com.br?subject=Conversa%20sobre%20o%20momento%20da%20minha%20empresa" class="btn btn-ghost" style="border-color:rgba(255,255,255,.55);color:#fff">Prefiro e-mail</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Desirée Treinamentos · desenvolvimento de lideranças e equipes</span>
+    <span>desireetreinamentos.com.br</span>
+  </div>
+</footer>
+
+<div class="draft-flag">Rascunho privado · home v2</div>
+
+<script>
+  // theme toggle
+  var root=document.documentElement, tg=document.getElementById('themeToggle');
+  function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches}
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':sysDark()}
+  function paint(){tg.textContent=isDark()?'☀':'☾'}
+  tg.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  paint();
+
+  // situation selector
+  var picker=document.getElementById('picker'),answer=document.getElementById('answer'),
+      aTxt=document.getElementById('answerTxt'),aFoot=document.getElementById('answerFoot');
+  picker.addEventListener('click',function(e){
+    var b=e.target.closest('.sit'); if(!b)return;
+    Array.prototype.forEach.call(picker.querySelectorAll('.sit'),function(x){x.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');
+    answer.classList.remove('is-empty');
+    aTxt.textContent=b.getAttribute('data-a');
+    aFoot.textContent='E, se ajudar, te mando algumas perguntas para pensarmos juntos.';
+    var sit=(b.textContent||'').trim();
+    var wa=document.getElementById('answerWa');
+    if(wa){wa.href='https://wa.me/5548996670999?text='+encodeURIComponent('Oi! Vim pelo site e me identifiquei com esta situação: "'+sit+'" Podemos conversar?');wa.style.display='inline-flex';}
+    if(window.matchMedia&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      answer.animate([{opacity:.4,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:320,easing:'ease'});
+    }
+  });
+
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
+  Array.prototype.forEach.call(document.querySelectorAll('.reveal'),function(el,i){el.style.transitionDelay=(i*70)+'ms';io.observe(el)});
+
+  // motif de rede/conexões do hero
+  (function(){
+    var c=document.getElementById('net'); if(!c) return;
+    var ctx=c.getContext('2d'), hero=c.parentElement, dpr=Math.min(window.devicePixelRatio||1,2);
+    var nodes=[], N=0, W=0, H=0, raf=0, vis=true;
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function rgb(){var h=(getComputedStyle(document.documentElement).getPropertyValue('--accent-bright')||'#4FB3BC').trim().replace('#','');
+      if(h.length===3)h=h.split('').map(function(x){return x+x}).join('');var n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255];}
+    function resize(){
+      W=hero.clientWidth;H=hero.clientHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+      N=Math.max(16,Math.min(46,Math.round(W*H/28000)));nodes=[];
+      for(var i=0;i<N;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:1+Math.random()*2.2});
+    }
+    function draw(){
+      var col=rgb(),R=col[0],G=col[1],B=col[2];ctx.clearRect(0,0,W,H);
+      for(var i=0;i<N;i++){var a=nodes[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;}
+      for(var i=0;i<N;i++)for(var j=i+1;j<N;j++){var a=nodes[i],b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<160){ctx.strokeStyle='rgba('+R+','+G+','+B+','+(0.18*(1-d/160))+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+      for(var i=0;i<N;i++){var a=nodes[i];ctx.fillStyle='rgba('+R+','+G+','+B+',0.6)';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.2832);ctx.fill();}
+      if(!reduce&&vis)raf=requestAnimationFrame(draw);
+    }
+    resize();draw();
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){vis=e.isIntersecting;cancelAnimationFrame(raf);if(vis&&!reduce)draw();});},{threshold:0}).observe(hero);}window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();draw();});
+  })();
+
+  // hero banner rotation
+  (function(){
+    var slides=[].slice.call(document.querySelectorAll('#slides .slide'));
+    var dots=[].slice.call(document.querySelectorAll('#dots .dot'));
+    if(slides.length<2) return;
+    var i=0,t;
+    function go(n){slides[i].classList.remove('is-on');if(dots[i])dots[i].classList.remove('is-on');
+      i=(n+slides.length)%slides.length;slides[i].classList.add('is-on');if(dots[i])dots[i].classList.add('is-on');}
+    function loop(){t=setTimeout(function(){go(i+1);loop();},5200);}
+    dots.forEach(function(d,k){d.addEventListener('click',function(){clearTimeout(t);go(k);loop();});});
+    loop();
+  })();
+</script>
+</body>
+</html>
