@@ -232,6 +232,15 @@
   }
   .draft-flag{position:fixed;bottom:14px;left:14px;z-index:30;background:var(--ink);color:var(--bg);
     font-size:.72rem;letter-spacing:.04em;padding:.4rem .7rem;border-radius:999px;opacity:.85}
+
+/* correcao de contraste + remocao de rascunho (producao 02/09) */
+.hero .eyebrow{color:#eaf7f8 !important;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.hero h1{text-shadow:0 2px 20px rgba(0,0,0,.45)}
+.hero .lede{color:#ffffff !important;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.hero::after{background:linear-gradient(180deg,rgba(8,18,30,.5),rgba(8,18,30,.9) 82%) !important}
+.close-cta{background:#0F565E !important}
+.close-cta,.close-cta h2,.close-cta p{color:#ffffff !important}
+.draft-flag{display:none !important}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Desirée Treinamentos", "url": "https://desireetreinamentos.com.br/", "description": "Desenvolvimento de lideranças e equipes que fazem a estratégia virar resultado, a partir da realidade de cada organização.", "email": "desiree@desireetreinamentos.com.br", "telephone": "+5548996670999", "areaServed": "BR", "knowsLanguage": "pt-BR"}</script>
 </head>
@@ -422,7 +431,7 @@
   </div>
 </footer>
 
-<div class="draft-flag">Rascunho privado · home v2</div>
+
 
 <script>
   // theme toggle
