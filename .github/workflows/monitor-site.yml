@@ -15,6 +15,7 @@ on:
 permissions:
   issues: write
   contents: read
+  actions: write   # keepalive: GitHub desliga cron após 60 dias sem commit
 
 jobs:
   checar:
@@ -83,3 +84,11 @@ jobs:
           for n in $(gh issue list --state open --search "\"🔴 Site fora do ar\" in:title" --json number -q '.[].number'); do
             gh issue close "$n" --comment "✅ Voltou: raiz, www e MX respondendo ($(date -u '+%d/%m/%Y %H:%M') UTC)."
           done
+
+      - name: Manter o agendamento vivo
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # Repo com pouco commit tem o cron desligado pelo GitHub em 60 dias.
+        # Reativar via API zera esse relógio sem precisar de commit.
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/monitor-site.yml/enable"
