@@ -237,7 +237,13 @@
 .hero .eyebrow{color:#eaf7f8 !important;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .hero h1{text-shadow:0 2px 20px rgba(0,0,0,.45)}
 .hero .lede{color:#ffffff !important;text-shadow:0 1px 14px rgba(0,0,0,.55)}
-.hero::after{background:linear-gradient(180deg,rgba(8,18,30,.5),rgba(8,18,30,.9) 82%) !important}
+/* fotos do hero visiveis (25/09): antes 4 camadas escuras somadas (P&B .82 + duotone + pelicula 50-90% + rede)
+   deixavam a foto quase invisivel; agora escurece so atras do texto (esquerda/baixo) */
+.hero .slide{filter:grayscale(.2) contrast(1.04) brightness(1.02)}
+.hero .slides::after{opacity:.45}
+.hero::after{background:linear-gradient(90deg,rgba(8,18,30,.78) 0%,rgba(8,18,30,.55) 42%,rgba(8,18,30,.12) 78%,rgba(8,18,30,0) 100%),linear-gradient(180deg,rgba(8,18,30,.25) 0%,rgba(8,18,30,0) 30%,rgba(8,18,30,.35) 100%) !important}
+#net{opacity:.3}
+@media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(8,18,30,.35) 0%,rgba(8,18,30,.55) 45%,rgba(8,18,30,.82) 100%) !important}}
 .close-cta{background:#0F565E !important}
 .close-cta,.close-cta h2,.close-cta p{color:#ffffff !important}
 .draft-flag{display:none !important}
