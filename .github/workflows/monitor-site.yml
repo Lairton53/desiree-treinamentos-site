@@ -1,0 +1,85 @@
+name: Monitor do site — raiz, www e e-mail
+
+# Incidente 24/09/2026: www.desireetreinamentos.com.br ficou em erro 522
+# (www nunca foi ligado ao projeto do Cloudflare Pages) e ninguém percebeu.
+# Este monitor testa a cada 30 min os endereços que o público usa e o MX do
+# e-mail. Se algo falhar: o job fica vermelho (GitHub manda e-mail ao dono) e
+# abre uma issue "🔴 Site fora do ar". Quando volta, a issue fecha sozinha.
+on:
+  schedule:
+    - cron: "13,43 * * * *"   # fora do minuto zero (GitHub atrasa hora cheia)
+  push:
+    branches: [main]          # todo deploy também é testado
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  checar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Testar endereços e e-mail
+        id: teste
+        run: |
+          set -u
+          falhas=""
+          marca="Desirée Treinamentos"
+
+          checar_url () {  # segue redirecionamentos; final tem que ser 200 com a marca
+            local url="$1" res code final ok=""
+            for tentativa in 1 2 3; do
+              res=$(curl -sSL --max-redirs 5 -m 25 -o /tmp/pg -w "%{http_code} %{url_effective}" "$url" || echo "000 -")
+              code=${res%% *}; final=${res#* }
+              if [ "$code" = "200" ] && grep -q "$marca" /tmp/pg; then ok=1; break; fi
+              sleep 20
+            done
+            if [ -n "$ok" ]; then echo "OK   $url -> $final"; else
+              echo "FALHA $url -> HTTP $code ($final)"
+              falhas="$falhas\n- \`$url\` → HTTP $code ($final)"
+            fi
+          }
+
+          checar_url https://desireetreinamentos.com.br/
+          checar_url https://www.desireetreinamentos.com.br/
+          checar_url http://desireetreinamentos.com.br/
+          checar_url http://www.desireetreinamentos.com.br/
+
+          # E-mail: MX do Google precisa existir (só leitura, nunca altera nada)
+          mx=$(dig +short MX desireetreinamentos.com.br @1.1.1.1 | grep -ci google || true)
+          if [ "$mx" -ge 1 ]; then echo "OK   MX Google ($mx registros)"; else
+            echo "FALHA MX do Google sumiu"
+            falhas="$falhas\n- MX do Google **não encontrado** (e-mail pode estar parado)"
+          fi
+
+          if [ -n "$falhas" ]; then
+            printf "%b\n" "$falhas" > /tmp/falhas.md
+            echo "status=falha" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=ok" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Abrir ou atualizar alerta
+        if: steps.teste.outputs.status == 'falha'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          titulo="🔴 Site fora do ar"
+          corpo=$(printf "Detectado em %s UTC:\n%s\n\nComo resolver: radar-maquina/docs/SITE-DESIREE-OPERACAO.md (seção *Se o site cair*)." "$(date -u '+%d/%m/%Y %H:%M')" "$(cat /tmp/falhas.md)")
+          n=$(gh issue list --state open --search "\"$titulo\" in:title" --json number -q '.[0].number')
+          if [ -z "$n" ]; then gh issue create --title "$titulo" --body "$corpo" --assignee Lairton53
+          else gh issue comment "$n" --body "$corpo"; fi
+          exit 1   # job vermelho = e-mail do GitHub ao dono
+
+      - name: Fechar alerta quando voltar
+        if: steps.teste.outputs.status == 'ok'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for n in $(gh issue list --state open --search "\"🔴 Site fora do ar\" in:title" --json number -q '.[].number'); do
+            gh issue close "$n" --comment "✅ Voltou: raiz, www e MX respondendo ($(date -u '+%d/%m/%Y %H:%M') UTC)."
+          done
