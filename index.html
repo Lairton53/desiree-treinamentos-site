@@ -94,6 +94,7 @@
   .navlinks{display:flex;gap:1.6rem;align-items:center;font-size:.92rem}
   .navlinks a{text-decoration:none;color:var(--ink-soft)}
   .navlinks a:hover{color:var(--ink)}
+  .navlinks a.btn-primary{color:#fff}
   .toggle{background:none;border:1px solid var(--line);color:var(--ink-soft);
     width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;line-height:1;
     display:grid;place-items:center;flex:none}
@@ -105,9 +106,8 @@
     transition:transform .3s var(--ease),background .2s ease,color .2s ease,box-shadow .3s var(--ease)}
   .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
   .btn-primary{background:var(--accent);color:#fff}
-  :root[data-theme="dark"] .btn-primary,
-  :root:not([data-theme="light"]) .btn-primary{color:#0a1e20}
-  @media (prefers-color-scheme:dark){.btn-primary{color:#0a1e20}}
+  :root[data-theme="dark"] .btn-primary{color:#0a1e20}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{color:#0a1e20}}
   .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent-ink)}
 
@@ -217,9 +217,9 @@
   @media (prefers-color-scheme:dark){.close-cta{color:#0a1e20}}
   .close-cta h2{font-size:clamp(1.6rem,3.2vw,2.3rem);color:inherit;max-width:18ch}
   .close-cta p{margin-top:.6rem;opacity:.85;max-width:40ch}
-  .close-cta .btn-primary{background:#fff;color:var(--accent-ink)}
-  @media (prefers-color-scheme:dark){.close-cta .btn-primary{background:#0a1e20;color:var(--accent)}}
-  :root[data-theme="dark"] .close-cta .btn-primary{background:#0a1e20;color:var(--accent)}
+  :root .close-cta .btn-primary{background:#fff;color:#0F565E}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .close-cta .btn-primary{background:#0a1e20;color:#4FB3BC}}
+  :root[data-theme="dark"] .close-cta .btn-primary{background:#0a1e20;color:#4FB3BC}
 
   footer.foot{padding:2.4rem 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.88rem}
   .foot .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
