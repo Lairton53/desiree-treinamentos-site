@@ -181,11 +181,14 @@
   .case .who{font-family:"Fraunces",serif;font-size:1.3rem;margin-bottom:.15rem}
   .case .tag{font-size:.8rem;color:var(--accent-ink);font-weight:600;letter-spacing:.04em}
   .case p{margin-top:.7rem;color:var(--ink-soft);font-size:.95rem}
+  .foot a{color:inherit}
 
   /* themes chips */
   .chips{display:flex;flex-wrap:wrap;gap:.6rem}
   .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem 1rem;font-size:.95rem}
   .chip:hover{border-color:var(--accent)}
+  .turmas-link{margin-top:1.6rem;font-size:.95rem}
+  .turmas-link a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px}
 
   /* two-col generic */
   .two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
@@ -384,6 +387,7 @@
         <span class="chip">Experiência do cliente (CX)</span>
         <span class="chip">Diagnóstico e leitura organizacional</span>
       </div>
+      <p class="turmas-link" id="turmasLink" hidden><a href="/turmas/">Turmas abertas: próxima em <span id="turmasData"></span></a></p>
     </div>
   </section>
 
@@ -433,12 +437,13 @@
 <footer class="foot">
   <div class="wrap">
     <span>Desirée Treinamentos · desenvolvimento de lideranças e equipes</span>
-    <span>desireetreinamentos.com.br</span>
+    <span>desireetreinamentos.com.br · <a href="/privacidade/">Política de privacidade</a></span>
   </div>
 </footer>
 
 
 
+<script src="/turmas.js"></script>
 <script>
   // theme toggle
   var root=document.documentElement, tg=document.getElementById('themeToggle');
@@ -465,6 +470,14 @@
       answer.animate([{opacity:.4,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:320,easing:'ease'});
     }
   });
+
+  // turmas abertas: o link só aparece quando há turma futura
+  (function(){
+    var prox=window.turmasFuturas&&window.turmasFuturas()[0];
+    if(!prox)return;
+    document.getElementById('turmasData').textContent=prox.quando;
+    document.getElementById('turmasLink').hidden=false;
+  })();
 
   // reveal on scroll
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});

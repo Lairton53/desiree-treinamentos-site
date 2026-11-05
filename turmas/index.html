@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Turmas abertas com a Desirée Freccia, realizadas com entidades empresariais parceiras.">
+<meta name="theme-color" content="#F1F7F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1E20" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://desireetreinamentos.com.br/turmas/">
+<title>Turmas abertas | Desirée Treinamentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/pagina.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Desirée Treinamentos</a>
+    <nav class="navlinks">
+      <a href="/#trabalho">Como trabalho</a>
+      <a href="/#casos">Experiências</a>
+      <a href="/#quem">Quem é a Desirée</a>
+      <a href="/#conversa" class="btn btn-primary">Conversar</a>
+      <button class="toggle" id="themeToggle" aria-label="Alternar tema">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Turmas abertas</p>
+    <h1>Próximas turmas com a Desirée.</h1>
+    <p class="lede">Encontros presenciais, realizados com entidades empresariais parceiras, com prática que as pessoas aplicam no dia a dia. A inscrição acontece com a entidade que recebe cada turma.</p>
+
+    <div class="turmas" id="turmas" hidden></div>
+    <p class="sem-turma" id="semTurma" hidden>A próxima agenda será publicada aqui assim que as datas forem confirmadas com as entidades.</p>
+    <noscript><p class="sem-turma">Para saber as próximas turmas, escreva para <a href="mailto:desiree@desireetreinamentos.com.br">desiree@desireetreinamentos.com.br</a>.</p></noscript>
+
+    <div class="fecho">
+      <div>
+        <h2>Quer levar esse trabalho para a sua empresa?</h2>
+        <p>Uma primeira conversa, leve e no seu tempo, para entender a sua realidade.</p>
+      </div>
+      <a class="btn" href="https://wa.me/5548996670999?text=Oi!%20Vim%20pelo%20site%20e%20quero%20conversar%20sobre%20o%20momento%20da%20minha%20empresa." target="_blank" rel="noopener">Conversar no WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Desirée Treinamentos · desenvolvimento de lideranças e equipes</span>
+    <span>desireetreinamentos.com.br · <a href="/privacidade/">Política de privacidade</a></span>
+  </div>
+</footer>
+
+<script src="/turmas.js"></script>
+<script>
+  // theme toggle
+  var root=document.documentElement, tg=document.getElementById('themeToggle');
+  function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches}
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':sysDark()}
+  function paint(){tg.textContent=isDark()?'☀':'☾'}
+  tg.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  paint();
+
+  // lista de turmas: sai de turmas.js e mostra só as futuras
+  function desenharTurmas(lista){
+    var caixa=document.getElementById('turmas');
+    caixa.textContent='';
+    lista.forEach(function(t){
+      var item=document.createElement('article');item.className='turma';
+      var data=document.createElement('div');data.className='data';data.textContent=t.data;
+      var meio=document.createElement('div');
+      var nome=document.createElement('h2');nome.textContent=t.curso;
+      var info=document.createElement('p');info.className='info';info.textContent=t.onde+' · '+t.horario;
+      meio.appendChild(nome);meio.appendChild(info);
+      var ir=document.createElement('a');ir.className='ir';ir.href=t.link;ir.target='_blank';ir.rel='noopener';ir.textContent=t.acao;
+      item.appendChild(data);item.appendChild(meio);item.appendChild(ir);
+      caixa.appendChild(item);
+    });
+    caixa.hidden=!lista.length;
+    document.getElementById('semTurma').hidden=!!lista.length;
+  }
+  desenharTurmas(window.turmasFuturas());
+</script>
+</body>
+</html>
