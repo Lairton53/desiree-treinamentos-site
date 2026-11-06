@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F1F7F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1E20" media="(prefers-color-scheme: dark)">
+<title>Endereço fora do site | Desirée Treinamentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/pagina.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>Desirée Treinamentos</a>
+    <nav class="navlinks">
+      <a href="/#trabalho">Como trabalho</a>
+      <a href="/#casos">Experiências</a>
+      <a href="/#quem">Quem é a Desirée</a>
+      <a href="/#conversa" class="btn btn-primary">Conversar</a>
+      <button class="toggle" id="themeToggle" aria-label="Alternar tema">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap texto">
+    <p class="eyebrow">Caminhos do site</p>
+    <h1>Vamos te levar ao lugar certo.</h1>
+    <p class="lede">Este endereço está fora do site. Estes caminhos levam ao que você procura.</p>
+    <ul>
+      <li><a href="/">Página inicial</a></li>
+      <li><a href="/#trabalho">Como a Desirée trabalha</a></li>
+      <li><a href="/turmas/">Turmas abertas</a></li>
+      <li><a href="/#conversa">Conversar com a Desirée</a></li>
+    </ul>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Desirée Treinamentos · desenvolvimento de lideranças e equipes</span>
+    <span>desireetreinamentos.com.br · <a href="/privacidade/">Política de privacidade</a></span>
+  </div>
+</footer>
+
+<script>
+  // theme toggle
+  var root=document.documentElement, tg=document.getElementById('themeToggle');
+  function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches}
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':sysDark()}
+  function paint(){tg.textContent=isDark()?'☀':'☾'}
+  tg.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  paint();
+</script>
+</body>
+</html>
