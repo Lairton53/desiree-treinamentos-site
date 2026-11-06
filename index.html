@@ -6,7 +6,8 @@
 <meta name="description" content="Desirée Treinamentos desenvolve lideranças e equipes que fazem a estratégia virar resultado, com um trabalho desenhado a partir da realidade de cada organização.">
 <meta name="theme-color" content="#F1F7F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A1E20" media="(prefers-color-scheme: dark)">
-<link rel="preload" as="image" href="images/hero-1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-1-azul.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-1-azul-m.webp" media="(max-width:760px)" fetchpriority="high">
 <link rel="canonical" href="https://desireetreinamentos.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -125,9 +126,7 @@
   .hero{position:relative;overflow:hidden;min-height:min(88vh,780px);display:flex;align-items:flex-end;
     padding-top:clamp(96px,13vh,160px);padding-bottom:clamp(44px,6vw,80px)}
   .hero .slides{position:absolute;inset:0;z-index:0;isolation:isolate}
-  .hero .slides::after{content:"";position:absolute;inset:0;background:var(--accent);mix-blend-mode:color;pointer-events:none}
   .hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
-    filter:grayscale(1) contrast(1.07) brightness(.82);
     transition:opacity 1.15s ease;animation:kb 16s ease-in-out infinite alternate}
   .hero .slide.is-on{opacity:1}
   @keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.13)}}
@@ -145,6 +144,11 @@
   .dot::before{content:"";position:absolute;left:0;right:0;top:10px;height:4px;border-radius:2px;background:rgba(255,255,255,.4);transition:background .3s}
   .dot.is-on::before{background:#fff}
   @media (prefers-reduced-motion:reduce){.hero .slide{animation:none}}
+  @media (max-width:760px),(pointer:coarse){.hero .slide{animation:none;transform:scale(1.05)}}
+  .hero .s1{background-image:url('images/hero-1-azul.webp')}
+  .hero.solta .s4{background-image:url('images/hero-4-azul.webp')}
+  .hero.solta .s3{background-image:url('images/hero-3-azul.webp')}
+  @media (max-width:760px){.hero .s1{background-image:url('images/hero-1-azul-m.webp')}.hero.solta .s4{background-image:url('images/hero-4-azul-m.webp')}.hero.solta .s3{background-image:url('images/hero-3-azul-m.webp')}}
   .hero h1{font-size:clamp(2.7rem,7.2vw,5.6rem);max-width:15ch;margin-top:1.2rem;letter-spacing:-.028em;font-weight:400}
   .hero .lede{margin-top:1.5rem;max-width:52ch;font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--ink-soft)}
   .hero .cta-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.2rem}
@@ -244,8 +248,7 @@
 .hero .lede{color:#ffffff !important;text-shadow:0 1px 14px rgba(0,0,0,.55)}
 /* fotos do hero visiveis (25/09): antes 4 camadas escuras somadas (P&B .82 + duotone + pelicula 50-90% + rede)
    deixavam a foto quase invisivel; agora escurece so atras do texto (esquerda/baixo) */
-.hero .slide{filter:grayscale(.2) contrast(1.04) brightness(1.02)}
-.hero .slides::after{opacity:.45}
+/* 06/11: esse efeito (P&B .2 + azul a 45%) agora vem aplicado nas fotos hero-N-azul, gerado por duotone.py */
 .hero::after{background:linear-gradient(90deg,rgba(8,18,30,.78) 0%,rgba(8,18,30,.55) 42%,rgba(8,18,30,.12) 78%,rgba(8,18,30,0) 100%),linear-gradient(180deg,rgba(8,18,30,.25) 0%,rgba(8,18,30,0) 30%,rgba(8,18,30,.35) 100%) !important}
 #net{opacity:.3}
 @media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(8,18,30,.35) 0%,rgba(8,18,30,.55) 45%,rgba(8,18,30,.82) 100%) !important}}
@@ -253,7 +256,7 @@
 .close-cta,.close-cta h2,.close-cta p{color:#ffffff !important}
 .draft-flag{display:none !important}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Desirée Treinamentos", "url": "https://desireetreinamentos.com.br/", "description": "Desenvolvimento de lideranças e equipes que fazem a estratégia virar resultado, a partir da realidade de cada organização.", "email": "desiree@desireetreinamentos.com.br", "telephone": "+5548996670999", "areaServed": "BR", "knowsLanguage": "pt-BR", "founder": {"@type": "Person", "name": "Desirée de Souza Freccia"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://desireetreinamentos.com.br/#empresa", "name": "Desirée Treinamentos", "url": "https://desireetreinamentos.com.br/", "description": "Desenvolvimento de lideranças e equipes que fazem a estratégia virar resultado, a partir da realidade de cada organização.", "email": "desiree@desireetreinamentos.com.br", "telephone": "+5548996670999", "areaServed": "BR", "knowsLanguage": "pt-BR", "founder": {"@type": "Person", "name": "Desirée de Souza Freccia", "@id": "https://desireetreinamentos.com.br/#desiree"}, "image": "https://desireetreinamentos.com.br/images/compartilhar.jpg", "sameAs": ["https://www.instagram.com/desiree.mentoring/"], "knowsAbout": ["Desenvolvimento de lideranças", "Gestão de equipes", "Comunicação e alinhamento", "Inteligência emocional e conflitos", "Comunicação Não Violenta", "NR-01 e segurança psicológica", "Mentoria de líderes", "Vendas consultivas e negociação", "Experiência do cliente (CX)", "Diagnóstico e leitura organizacional"]}</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -277,9 +280,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="slides" id="slides">
-      <div class="slide is-on" style="background-image:url('images/hero-1.webp')"></div>
-      <div class="slide" style="background-image:url('images/hero-4.webp')"></div>
-      <div class="slide" style="background-image:url('images/hero-3.webp')"></div>
+      <div class="slide is-on s1"></div>
+      <div class="slide s4"></div>
+      <div class="slide s3"></div>
     </div>
     <canvas id="net" aria-hidden="true"></canvas>
     <div class="wrap hero-content">
@@ -288,7 +291,7 @@
       <p class="lede reveal">A gente conecta liderança, comportamento e relações de trabalho à estratégia e ao resultado da sua empresa, com um trabalho desenhado a partir da sua realidade.</p>
       <div class="cta-row reveal">
         <a href="#conversa" class="btn btn-primary">Conversar com a Desirée</a>
-        <a href="#casos" class="btn btn-ghost">Conhecer experiências realizadas</a>
+        <a href="#trabalho" class="btn btn-ghost">Ver como a Desirée trabalha</a>
       </div>
       <div class="dots" id="dots">
         <button class="dot is-on" type="button" aria-label="Imagem 1"></button>
@@ -323,7 +326,7 @@
         <button class="sit" aria-pressed="false" data-a="Aqui a Desirée facilita a estratégia virar prática, com indicadores e as próprias equipes conduzindo."><span class="mk"></span>A estratégia está definida e queremos que ela chegue à rotina das pessoas.</button>
         <button class="sit" aria-pressed="false" data-a="Aqui entra uma trilha de liderança de linha de frente, com comunicação e consistência na experiência do cliente."><span class="mk"></span>O atendimento e a experiência do cliente precisam de mais consistência.</button>
         <button class="sit" aria-pressed="false" data-a="Aqui entra um trabalho de vendas consultivas: relação, escuta, contorno de objeções e negociação, com prática que a equipe usa no dia a dia."><span class="mk"></span>Temos produto e mercado, e a equipe de vendas precisa prospectar, negociar e converter melhor.</button>
-        <button class="sit" aria-pressed="false" data-a="Aqui a gente começa por uma conversa e um diagnóstico rápido, pra desenhar o caminho certo pra vocês."><span class="mk"></span>Queremos desenvolver o time e definir por onde começar.</button>
+        <button class="sit" aria-pressed="false" data-a="Aqui a gente começa por uma conversa e um diagnóstico rápido, para desenhar o caminho certo para vocês."><span class="mk"></span>Queremos desenvolver o time e definir por onde começar.</button>
       </div>
       <div class="answer is-empty" id="answer" aria-live="polite">
         <span class="lbl">Um caminho possível</span>
@@ -340,14 +343,14 @@
       <div class="sec-head">
         <p class="eyebrow">Como a Desirée trabalha</p>
         <h2>Quando entendemos a sua empresa, a intervenção nasce no ponto certo.</h2>
-        <p>Quando a gente entende primeiro, a intervenção já nasce certa para a sua empresa. Sempre a partir de quem você é, feita sob medida.</p>
+        <p>Cada trabalho começa por conhecer a empresa e as pessoas que fazem a operação acontecer. Daí nasce um desenho sob medida.</p>
       </div>
       <div class="steps">
-        <div class="step"><span class="n">Primeiro</span><h3>Leitura da organização</h3><p>Entendo como a empresa opera, como vende, quem são seus clientes e onde as relações de trabalho estão travadas.</p></div>
+        <div class="step"><span class="n">Primeiro</span><h3>Leitura da organização</h3><p>Entendo como a empresa opera, como vende, quem são seus clientes e como as pessoas trabalham juntas.</p></div>
         <div class="step"><span class="n">Depois</span><h3>Entendo a necessidade</h3><p>Escuto o que você já enxerga e somo a leitura da empresa, para o desenvolvimento render o máximo para o seu time.</p></div>
         <div class="step"><span class="n">Então</span><h3>Construo a intervenção</h3><p>Diagnóstico, trilha, workshop, mentoria ou facilitação, desenhada para a sua realidade e com prática que as pessoas aplicam no dia a dia.</p></div>
       </div>
-      <p class="muted" style="margin-top:1.9rem;max-width:62ch">A leitura olha três coisas de perto: a <strong style="color:var(--ink)">operação</strong> (como o trabalho acontece de fato), as <strong style="color:var(--ink)">relações entre as áreas</strong> (onde a colaboração trava) e o <strong style="color:var(--ink)">fluxo do dia a dia</strong> (onde o crescimento pressiona as pessoas).</p>
+      <p class="muted" style="margin-top:1.9rem;max-width:62ch">A leitura olha três coisas de perto: a <strong style="color:var(--ink)">operação</strong> (como o trabalho acontece de fato), as <strong style="color:var(--ink)">relações entre as áreas</strong> (como as áreas combinam e decidem juntas) e o <strong style="color:var(--ink)">fluxo do dia a dia</strong> (onde o crescimento pede mais das pessoas).</p>
     </div>
   </section>
 
@@ -379,7 +382,7 @@
       <div class="sec-head">
         <p class="eyebrow">Temas em que posso ajudar</p>
         <h2>São pontos de partida, moldados para a sua empresa.</h2>
-        <p>Cada um vira o que a sua empresa precisa que ele seja.</p>
+        <p>Os temas se combinam no desenho de cada trabalho.</p>
       </div>
       <div class="chips">
         <span class="chip">Desenvolvimento de lideranças</span>
@@ -418,7 +421,7 @@
       <div class="close-cta">
         <div>
           <h2>Vamos conversar sobre o seu momento?</h2>
-          <p>Uma primeira conversa, leve e no seu tempo, para entender a sua realidade.</p>
+          <p>Uma primeira conversa, leve e no seu tempo, para entender a sua realidade. A mensagem chega direto à Desirée.</p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:.7rem"><a href="https://wa.me/5548996670999?text=Oi%2C%20Desir%C3%A9e.%20Conheci%20o%20seu%20trabalho%20pelo%20site%20e%20queria%20conversar%20sobre%20um%20momento%20da%20nossa%20empresa." class="btn btn-primary" target="_blank" rel="noopener">Conversar no WhatsApp</a><!--email_off--><a href="mailto:desiree@desireetreinamentos.com.br?subject=Conversa%20sobre%20o%20momento%20da%20minha%20empresa" class="btn btn-ghost" style="border-color:rgba(255,255,255,.55);color:#fff">Prefiro e-mail</a><!--/email_off--></div>
       </div>
@@ -454,7 +457,7 @@
     b.setAttribute('aria-pressed','true');
     answer.classList.remove('is-empty');
     aTxt.textContent=b.getAttribute('data-a');
-    aFoot.textContent='E, se ajudar, te mando algumas perguntas para pensarmos juntos.';
+    aFoot.textContent='E, se ajudar, envio algumas perguntas para pensarmos juntos.';
     var sit=(b.textContent||'').trim();
     var wa=document.getElementById('answerWa');
     if(wa){wa.href='https://wa.me/5548996670999?text='+encodeURIComponent('Oi, Desirée. Escolhi no site a situação mais parecida com a nossa: “'+sit.replace(/\.$/,'')+'”. Queria conversar sobre como você trabalharia isso na nossa empresa.');wa.style.display='inline-flex';}
@@ -480,7 +483,7 @@
     var c=document.getElementById('net'); if(!c) return;
     var ctx=c.getContext('2d'), hero=c.parentElement, dpr=Math.min(window.devicePixelRatio||1,2);
     var nodes=[], N=0, W=0, H=0, raf=0, vis=true;
-    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var reduce=window.matchMedia&&(window.matchMedia('(prefers-reduced-motion:reduce)').matches||window.matchMedia('(max-width:760px),(pointer:coarse)').matches);
     function rgb(){var h=(getComputedStyle(document.documentElement).getPropertyValue('--accent-bright')||'#4FB3BC').trim().replace('#','');
       if(h.length===3)h=h.split('').map(function(x){return x+x}).join('');var n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255];}
     function resize(){
@@ -496,7 +499,8 @@
       for(var i=0;i<N;i++){var a=nodes[i];ctx.fillStyle='rgba('+R+','+G+','+B+',0.6)';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.2832);ctx.fill();}
       if(!reduce&&vis)raf=requestAnimationFrame(draw);
     }
-    resize();draw();
+    function comeca(){resize();draw();}
+    if(document.readyState==='complete')comeca();else window.addEventListener('load',comeca);
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){vis=e.isIntersecting;cancelAnimationFrame(raf);if(vis&&!reduce)draw();});},{threshold:0}).observe(hero);}window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();draw();});
   })();
 
@@ -506,8 +510,10 @@
     var dots=[].slice.call(document.querySelectorAll('#dots .dot'));
     if(slides.length<2) return;
     var i=0,t;
+    function solta(){document.querySelector('.hero').classList.add('solta');}
+    window.addEventListener('load',solta);
     function go(n){slides[i].classList.remove('is-on');if(dots[i])dots[i].classList.remove('is-on');
-      i=(n+slides.length)%slides.length;slides[i].classList.add('is-on');if(dots[i])dots[i].classList.add('is-on');}
+      i=(n+slides.length)%slides.length;solta();slides[i].classList.add('is-on');if(dots[i])dots[i].classList.add('is-on');}
     function loop(){t=setTimeout(function(){go(i+1);loop();},5200);}
     dots.forEach(function(d,k){d.addEventListener('click',function(){clearTimeout(t);go(k);loop();});});
     loop();

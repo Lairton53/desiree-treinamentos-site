@@ -114,3 +114,4 @@ main{padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px)}
 footer.foot{padding:2.4rem 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.88rem}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
 .foot a{display:inline-block;padding:.35rem 0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
