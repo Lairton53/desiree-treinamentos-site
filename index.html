@@ -14,7 +14,9 @@
 <meta property="og:title" content="Desirée Treinamentos | Desenvolvimento de lideranças e equipes">
 <meta property="og:description" content="Desirée Treinamentos desenvolve lideranças e equipes que fazem a estratégia virar resultado, com um trabalho desenhado a partir da realidade de cada organização.">
 <meta property="og:url" content="https://desireetreinamentos.com.br/">
-<meta property="og:image" content="https://desireetreinamentos.com.br/images/hero-1.webp">
+<meta property="og:image" content="https://desireetreinamentos.com.br/images/compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <title>Desirée Treinamentos | Desenvolvimento de lideranças e equipes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,7 +101,7 @@
     width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;line-height:1;
     display:grid;place-items:center;flex:none}
   .toggle:hover{color:var(--ink);border-color:var(--ink-soft)}
-  @media(max-width:720px){.navlinks a:not(.btn){display:none}}
+  @media(max-width:720px){.bar .wrap{flex-wrap:wrap;height:auto;padding-top:.55rem;padding-bottom:.3rem;column-gap:.6rem;row-gap:0;justify-content:flex-start}.bar .wrap::after{content:"";flex-basis:100%;order:2}.brand{margin-right:auto;font-size:.95rem;white-space:nowrap}.navlinks .btn{padding:.5rem .85rem;font-size:.85rem}.toggle{width:34px;height:34px}.navlinks{display:contents}.navlinks a:not(.btn){order:3;font-size:.85rem;padding:.45rem 0}[id]{scroll-margin-top:120px}}
 
   .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border-radius:8px;
     font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;border:1px solid transparent;
@@ -139,8 +141,9 @@
   .hero .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
   .hero .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
   .dots{display:flex;gap:.55rem;margin-top:2.1rem}
-  .dot{width:34px;height:4px;border-radius:2px;border:0;background:rgba(255,255,255,.4);cursor:pointer;padding:0;transition:background .3s}
-  .dot.is-on{background:#fff}
+  .dot{width:34px;height:24px;border:0;background:none;cursor:pointer;padding:0;position:relative}
+  .dot::before{content:"";position:absolute;left:0;right:0;top:10px;height:4px;border-radius:2px;background:rgba(255,255,255,.4);transition:background .3s}
+  .dot.is-on::before{background:#fff}
   @media (prefers-reduced-motion:reduce){.hero .slide{animation:none}}
   .hero h1{font-size:clamp(2.7rem,7.2vw,5.6rem);max-width:15ch;margin-top:1.2rem;letter-spacing:-.028em;font-weight:400}
   .hero .lede{margin-top:1.5rem;max-width:52ch;font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--ink-soft)}
@@ -176,19 +179,17 @@
 
   /* cases */
   .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
-  .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:transform .3s var(--ease),border-color .3s var(--ease)}
-  .case:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
   .case .who{font-family:"Fraunces",serif;font-size:1.3rem;margin-bottom:.15rem}
   .case .tag{font-size:.8rem;color:var(--accent-ink);font-weight:600;letter-spacing:.04em}
   .case p{margin-top:.7rem;color:var(--ink-soft);font-size:.95rem}
-  .foot a{color:inherit}
+  .foot a{color:inherit;display:inline-block;padding:.35rem 0}
 
   /* themes chips */
   .chips{display:flex;flex-wrap:wrap;gap:.6rem}
   .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem 1rem;font-size:.95rem}
-  .chip:hover{border-color:var(--accent)}
   .turmas-link{margin-top:1.6rem;font-size:.95rem}
-  .turmas-link a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px}
+  .turmas-link a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px;display:inline-block;padding:.4rem 0}
 
   /* two-col generic */
   .two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
@@ -199,6 +200,7 @@
   .read p{font-size:.95rem}
   .read .rt{font-weight:600;color:var(--ink)}
 
+  img.who-portrait{display:block;width:100%;height:auto;object-fit:cover;object-position:center 22%}
   .who-portrait{aspect-ratio:4/5;border-radius:var(--radius);background-size:cover;background-position:center 22%;
      border:1px solid var(--line);box-shadow:var(--shadow);background-color:var(--surface-2)}
 
@@ -252,6 +254,10 @@
 .draft-flag{display:none !important}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Desirée Treinamentos", "url": "https://desireetreinamentos.com.br/", "description": "Desenvolvimento de lideranças e equipes que fazem a estratégia virar resultado, a partir da realidade de cada organização.", "email": "desiree@desireetreinamentos.com.br", "telephone": "+5548996670999", "areaServed": "BR", "knowsLanguage": "pt-BR", "founder": {"@type": "Person", "name": "Desirée de Souza Freccia"}}</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var t=localStorage.getItem('tema');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
 <header class="bar">
@@ -391,26 +397,12 @@
     </div>
   </section>
 
-  <!-- CONTENT / READS -->
-  <section id="leituras">
-    <div class="wrap two">
-      <div>
-        <p class="eyebrow">Conteúdos e leituras</p>
-        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:.6rem">Material que ajuda a pensar a sua organização, livre para usar quando quiser.</h2>
-        <p class="muted" style="margin-top:1rem">Gosto de deixar valor na sua mão desde já: leituras curtas, perguntas para refletir com o seu time e mapas de pontos críticos.</p>
-      </div>
-      <div class="reads">
-        <div class="read"><span class="k">01</span><p><span class="rt">Guia de conversas difíceis para gestores.</span><br>Um roteiro de quatro passos para dar feedback e conduzir conflitos com respeito e resultado.</p></div>
-        <div class="read"><span class="k">02</span><p><span class="rt">Segurança psicológica e cultura "speak up".</span><br>Como criar um ambiente em que o erro vira aprendizado e as pessoas se sentem seguras para falar.</p></div>
-        <div class="read"><span class="k">03</span><p><span class="rt">NR‑01 na prática.</span><br>Ligar clima, liderança e a norma de um jeito aplicado no dia a dia.</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- CONTENT / READS: volta quando o primeiro guia for aprovado -->
 
   <!-- WHO -->
   <section id="quem">
     <div class="wrap two">
-      <div class="who-portrait" style="background-image:url('images/desiree-portrait.webp')"></div>
+      <img class="who-portrait" src="images/desiree-portrait.webp" alt="Desirée de Souza Freccia" width="960" height="1280" loading="lazy" decoding="async">
       <div>
         <p class="eyebrow">Quem é a Desirée</p>
         <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:.6rem">Experiência e proximidade, direto com quem conduz o trabalho.</h2>
@@ -428,7 +420,7 @@
           <h2>Vamos conversar sobre o seu momento?</h2>
           <p>Uma primeira conversa, leve e no seu tempo, para entender a sua realidade.</p>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:.7rem"><a href="https://wa.me/5548996670999?text=Oi!%20Vim%20pelo%20site%20e%20quero%20conversar%20sobre%20o%20momento%20da%20minha%20empresa." class="btn btn-primary" target="_blank" rel="noopener">Conversar no WhatsApp</a><a href="mailto:desiree@desireetreinamentos.com.br?subject=Conversa%20sobre%20o%20momento%20da%20minha%20empresa" class="btn btn-ghost" style="border-color:rgba(255,255,255,.55);color:#fff">Prefiro e-mail</a></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.7rem"><a href="https://wa.me/5548996670999?text=Oi!%20Vim%20pelo%20site%20e%20quero%20conversar%20sobre%20o%20momento%20da%20minha%20empresa." class="btn btn-primary" target="_blank" rel="noopener">Conversar no WhatsApp</a><!--email_off--><a href="mailto:desiree@desireetreinamentos.com.br?subject=Conversa%20sobre%20o%20momento%20da%20minha%20empresa" class="btn btn-ghost" style="border-color:rgba(255,255,255,.55);color:#fff">Prefiro e-mail</a><!--/email_off--></div>
       </div>
     </div>
   </section>
@@ -450,7 +442,7 @@
   function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches}
   function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':sysDark()}
   function paint(){tg.textContent=isDark()?'☀':'☾'}
-  tg.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  tg.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');try{localStorage.setItem('tema',root.getAttribute('data-theme'))}catch(e){}paint()});
   paint();
 
   // situation selector
