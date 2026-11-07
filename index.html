@@ -195,7 +195,12 @@
   .chips{display:flex;flex-wrap:wrap;gap:.6rem}
   .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem 1rem;font-size:.95rem}
   .chip:hover{border-color:var(--accent)}
-  a.chip{text-decoration:none;color:inherit;display:inline-block}
+  /* temas que abrem página (07/11): cor, borda e seta mostram que é link, também no celular */
+  a.chip{text-decoration:none;color:var(--accent-ink);display:inline-flex;align-items:center;gap:.45rem;border-color:var(--accent);font-weight:500;transition:background .2s var(--ease)}
+  a.chip::after{content:"→";content:"→"/"";transition:transform .2s var(--ease)}
+  a.chip:hover{background:var(--surface-2)}
+  a.chip:hover::after{transform:translateX(3px)}
+  a.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .turmas-link{margin-top:1.6rem;font-size:.95rem}
   .turmas-link a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px;display:inline-block;padding:.4rem 0}
 
