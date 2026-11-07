@@ -194,6 +194,8 @@
   /* themes chips */
   .chips{display:flex;flex-wrap:wrap;gap:.6rem}
   .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem 1rem;font-size:.95rem}
+  .chip:hover{border-color:var(--accent)}
+  a.chip{text-decoration:none;color:inherit;display:inline-block}
   .turmas-link{margin-top:1.6rem;font-size:.95rem}
   .turmas-link a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px;display:inline-block;padding:.4rem 0}
 
@@ -205,6 +207,9 @@
   .read .k{font-family:"Fraunces",serif;color:var(--accent-ink);font-size:1rem;flex:none}
   .read p{font-size:.95rem}
   .read .rt{font-weight:600;color:var(--ink)}
+  a.read{text-decoration:none;color:inherit;transition:border-color .2s var(--ease),transform .3s var(--ease)}
+  a.read:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .reads .todas{font-size:.95rem;font-weight:600;color:var(--accent-ink);text-underline-offset:3px;margin-top:.4rem}
 
   img.who-portrait{display:block;width:100%;height:auto;object-fit:cover;object-position:center 22%}
   .who-portrait{aspect-ratio:4/5;border-radius:var(--radius);background-size:cover;background-position:center 22%;
@@ -384,25 +389,40 @@
       <div class="sec-head">
         <p class="eyebrow">Temas em que posso ajudar</p>
         <h2>São pontos de partida, moldados para a sua empresa.</h2>
-        <p>Os temas se combinam no desenho de cada trabalho.</p>
+        <p>Os temas se combinam no desenho de cada trabalho. Toque em um tema para ver como ele funciona na prática.</p>
       </div>
       <div class="chips">
-        <span class="chip">Desenvolvimento de lideranças</span>
-        <span class="chip">Gestão de equipes</span>
-        <span class="chip">Comunicação e alinhamento</span>
-        <span class="chip">Inteligência emocional e conflitos</span>
-        <span class="chip">Comunicação Não Violenta</span>
-        <span class="chip">NR-01 e segurança psicológica</span>
-        <span class="chip">Mentoria de líderes</span>
-        <span class="chip">Vendas consultivas e negociação</span>
-        <span class="chip">Experiência do cliente (CX)</span>
-        <span class="chip">Diagnóstico e leitura organizacional</span>
+        <a class="chip" href="/temas/desenvolvimento-de-liderancas/">Desenvolvimento de lideranças</a>
+        <a class="chip" href="/temas/gestao-de-equipes/">Gestão de equipes</a>
+        <a class="chip" href="/temas/comunicacao-e-alinhamento/">Comunicação e alinhamento</a>
+        <a class="chip" href="/temas/inteligencia-emocional-e-conflitos/">Inteligência emocional e conflitos</a>
+        <a class="chip" href="/temas/comunicacao-nao-violenta/">Comunicação Não Violenta</a>
+        <a class="chip" href="/temas/nr-01-e-seguranca-psicologica/">NR-01 e segurança psicológica</a>
+        <a class="chip" href="/temas/mentoria-de-lideres/">Mentoria de líderes</a>
+        <a class="chip" href="/temas/vendas-consultivas/">Vendas consultivas e negociação</a>
+        <a class="chip" href="/temas/experiencia-do-cliente/">Experiência do cliente (CX)</a>
+        <a class="chip" href="/temas/diagnostico-organizacional/">Diagnóstico e leitura organizacional</a>
       </div>
       <p class="turmas-link" id="turmasLink" hidden><a href="/turmas/">Turmas abertas: próxima em <span id="turmasData"></span></a></p>
     </div>
   </section>
 
-  <!-- CONTENT / READS: volta quando o primeiro guia for aprovado -->
+  <!-- CONTENT / READS -->
+  <section id="leituras">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow">Conteúdos e leituras</p>
+        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:.6rem">Material que ajuda a pensar a sua organização, livre para usar quando quiser.</h2>
+        <p class="muted" style="margin-top:1rem">Gosto de deixar valor na sua mão desde já: leituras curtas e perguntas para refletir com o seu time.</p>
+      </div>
+      <div class="reads">
+        <a class="read" href="/leituras/conversas-dificeis/"><span class="k">01</span><p><span class="rt">Guia de conversas difíceis para gestores.</span><br>Um roteiro de quatro passos para dar feedback e conduzir conflitos com respeito e resultado.</p></a>
+        <a class="read" href="/leituras/seguranca-psicologica/"><span class="k">02</span><p><span class="rt">Segurança psicológica e a cultura de falar.</span><br>Como criar um ambiente em que o erro vira aprendizado e as pessoas se sentem seguras para falar.</p></a>
+        <a class="read" href="/leituras/nr-01/"><span class="k">03</span><p><span class="rt">NR‑01 na prática para líderes.</span><br>Ligar clima, liderança e a norma de um jeito aplicado no dia a dia.</p></a>
+        <a class="todas" href="/leituras/">Ver todas as leituras</a>
+      </div>
+    </div>
+  </section>
 
   <!-- WHO -->
   <section id="quem">
