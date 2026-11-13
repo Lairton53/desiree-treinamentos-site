@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Notas Desirée — autorizar conector</title>
+<!--
+  Tela de autorização do conector MCP "Notas Desirée" (OAuth 2.1 do Supabase Auth).
+  O Supabase Auth manda para cá com ?authorization_id=...; aqui o Lairton entra com
+  e-mail + senha + código do app autenticador (MFA) e aprova o claude.ai.
+  Página estática SEM segredo: a chave abaixo é a publicável (pública por definição).
+  Quem decide de verdade é a Edge Function notas-mcp: só aceita o usuário do Lairton
+  com aal2 (MFA). Hospedar em HTTPS e configurar a URL em Authentication > OAuth Server.
+-->
+<style>
+  :root { --fundo:#f6f5f2; --cartao:#fff; --texto:#1d1d1b; --suave:#5f5e5a; --borda:#d8d6cf;
+          --acento:#7a2e4a; --erro:#a32020; --ok:#1f6b3a; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fundo:#17171a; --cartao:#222226; --texto:#ecebe7; --suave:#a9a8a2; --borda:#3a3a40;
+            --acento:#d58aa6; --erro:#ff8a8a; --ok:#7fd49c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fundo); color:var(--texto);
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 420px; margin: 0 auto; padding: 32px 16px; }
+  .cartao { background:var(--cartao); border:1px solid var(--borda); border-radius:12px; padding:24px; }
+  h1 { font-size:1.25rem; margin:0 0 4px; }
+  p.sub { color:var(--suave); margin:0 0 20px; font-size:.95rem; }
+  label { display:block; font-size:.9rem; margin:14px 0 4px; }
+  input { width:100%; padding:10px 12px; font-size:1rem; border:1px solid var(--borda); border-radius:8px;
+          background:transparent; color:var(--texto); }
+  input.codigo { letter-spacing:.3em; font-size:1.3rem; text-align:center; }
+  button { margin-top:18px; width:100%; padding:11px; font-size:1rem; border-radius:8px; cursor:pointer;
+           border:1px solid var(--acento); background:var(--acento); color:#fff; }
+  button.secundario { background:transparent; color:var(--texto); border-color:var(--borda); }
+  button:disabled { opacity:.6; cursor:wait; }
+  .erro { color:var(--erro); margin-top:12px; font-size:.95rem; }
+  .ok { color:var(--ok); }
+  .qr { display:block; width:200px; height:200px; margin:12px auto; background:#fff; padding:8px; border-radius:8px; }
+  code { word-break: break-all; font-size:.85rem; }
+  .pedido { border:1px solid var(--borda); border-radius:8px; padding:12px; margin:12px 0; font-size:.95rem; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="cartao">
+    <h1>Notas Desirée</h1>
+    <p class="sub">Autorizar o Claude a consultar e emitir notas fiscais da Desirée Treinamentos.</p>
+
+    <form id="f-login" hidden>
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" autocomplete="current-password" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <form id="f-cadastro-mfa" hidden>
+      <p>Primeiro acesso: cadastre o app autenticador (Google Authenticator, Microsoft Authenticator…).
+         Escaneie o QR code ou digite a chave no app.</p>
+      <img id="qr" class="qr" alt="QR code do app autenticador">
+      <p>Chave: <code id="segredo-totp"></code></p>
+      <label for="codigo-novo">Código de 6 dígitos que o app mostra</label>
+      <input id="codigo-novo" class="codigo" inputmode="numeric" pattern="\d{6}" maxlength="6" autocomplete="one-time-code" required>
+      <button type="submit">Confirmar</button>
+    </form>
+
+    <form id="f-mfa" hidden>
+      <label for="codigo">Código do app autenticador</label>
+      <input id="codigo" class="codigo" inputmode="numeric" pattern="\d{6}" maxlength="6" autocomplete="one-time-code" required>
+      <button type="submit">Verificar</button>
+    </form>
+
+    <div id="consentimento" hidden>
+      <div class="pedido">
+        <div><b id="cliente-nome"></b> pede acesso ao conector de notas.</div>
+        <div>Volta para: <code id="cliente-retorno"></code></div>
+        <div>Conta: <span id="usuario-email"></span></div>
+      </div>
+      <p id="aviso-retorno" class="erro" hidden>Atenção: o retorno não é claude.ai nem claude.com. Só aprove se você mesmo iniciou isto.</p>
+      <button id="aprovar">Aprovar</button>
+      <button id="negar" class="secundario">Negar</button>
+    </div>
+
+    <p id="mensagem" class="erro" role="alert"></p>
+    <button id="sair" class="secundario" hidden>Sair desta conta</button>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.99.3/dist/umd/supabase.min.js"
+        integrity="sha384-4bKASEcnXfYfA/rrhF9qD3mYowkb5k4Xbzbrf3ccqgZrplKUrwnA2Q/L5xcdZFAp" crossorigin="anonymous"></script>
+<script>
+(() => {
+  const SUPABASE_URL = "https://ouebpvwpapyjrotaisgl.supabase.co";
+  const CHAVE_PUBLICAVEL = "sb_publishable_Cbkf_ZT5ICZkk6o2aBmrbA__LEGLvo3";
+  const RETORNOS_CONFIAVEIS = ["claude.ai", "claude.com"];
+  const sb = supabase.createClient(SUPABASE_URL, CHAVE_PUBLICAVEL, { auth: { persistSession: true, storageKey: "notas-desiree" } });
+  const $ = (id) => document.getElementById(id);
+  const idAutorizacao = new URLSearchParams(location.search).get("authorization_id");
+  const telas = ["f-login", "f-cadastro-mfa", "f-mfa", "consentimento"];
+  const mostrar = (id) => { for (const t of telas) $(t).hidden = t !== id; $("mensagem").textContent = ""; };
+  const falhar = (txt) => { $("mensagem").textContent = txt; };
+  let fatorNovo = null;
+
+  async function ocupado(botao, fn) {
+    botao.disabled = true;
+    try { await fn(); } catch (e) { falhar(e.message || String(e)); } finally { botao.disabled = false; }
+  }
+
+  async function seguir() {
+    if (!idAutorizacao) return falhar("Link sem authorization_id. Comece de novo pelo claude.ai (Conectores > Conectar).");
+    const { data: { session } } = await sb.auth.getSession();
+    $("sair").hidden = !session;
+    if (!session) return mostrar("f-login");
+    const { data: aal, error } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (error) return falhar(error.message);
+    if (aal.currentLevel !== "aal2") {
+      if (aal.nextLevel === "aal2") return mostrar("f-mfa");
+      // sem fator TOTP ainda: cadastrar agora (o conector exige MFA)
+      const { data, error: e2 } = await sb.auth.mfa.enroll({ factorType: "totp", friendlyName: "Notas Desirée" });
+      if (e2) return falhar(e2.message);
+      fatorNovo = data.id;
+      $("qr").src = data.totp.qr_code;
+      $("segredo-totp").textContent = data.totp.secret;
+      return mostrar("f-cadastro-mfa");
+    }
+    const { data: det, error: e3 } = await sb.auth.oauth.getAuthorizationDetails(idAutorizacao);
+    if (e3) return falhar(`Pedido de autorização inválido ou vencido (${e3.message}). Comece de novo pelo claude.ai.`);
+    if (!("authorization_id" in det)) { location.href = det.redirect_url; return; }   // já aprovado antes
+    let host = "";
+    try { host = new URL(det.redirect_uri).hostname; } catch { /* inválido */ }
+    $("cliente-nome").textContent = det.client?.name || det.client?.client_name || "Cliente OAuth";
+    $("cliente-retorno").textContent = det.redirect_uri;
+    $("usuario-email").textContent = det.user?.email || "";
+    $("aviso-retorno").hidden = RETORNOS_CONFIAVEIS.some((h) => host === h || host.endsWith("." + h));
+    mostrar("consentimento");
+  }
+
+  $("f-login").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    ocupado(ev.submitter, async () => {
+      const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("senha").value });
+      $("senha").value = "";
+      if (error) throw new Error("E-mail ou senha não conferem.");
+      await seguir();
+    });
+  });
+
+  async function verificar(fatorId, codigo) {
+    const { error } = await sb.auth.mfa.challengeAndVerify({ factorId: fatorId, code: codigo });
+    if (error) throw new Error("Código não confere. Confira a hora do celular e tente o código seguinte.");
+  }
+
+  $("f-cadastro-mfa").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    ocupado(ev.submitter, async () => { await verificar(fatorNovo, $("codigo-novo").value.trim()); await seguir(); });
+  });
+
+  $("f-mfa").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    ocupado(ev.submitter, async () => {
+      const { data, error } = await sb.auth.mfa.listFactors();
+      if (error) throw error;
+      const fator = (data.totp || []).find((f) => f.status === "verified");
+      if (!fator) throw new Error("Nenhum app autenticador confirmado nesta conta.");
+      await verificar(fator.id, $("codigo").value.trim());
+      $("codigo").value = "";
+      await seguir();
+    });
+  });
+
+  $("aprovar").addEventListener("click", (ev) => ocupado(ev.currentTarget, async () => {
+    const { data, error } = await sb.auth.oauth.approveAuthorization(idAutorizacao, { skipBrowserRedirect: true });
+    if (error) throw error;
+    location.href = data.redirect_url;
+  }));
+
+  $("negar").addEventListener("click", (ev) => ocupado(ev.currentTarget, async () => {
+    const { data, error } = await sb.auth.oauth.denyAuthorization(idAutorizacao, { skipBrowserRedirect: true });
+    if (error) throw error;
+    location.href = data.redirect_url;
+  }));
+
+  $("sair").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
+
+  seguir().catch((e) => falhar(e.message || String(e)));
+})();
+</script>
+</body>
+</html>
