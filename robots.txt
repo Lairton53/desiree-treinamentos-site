@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /notas/
 
 Sitemap: https://desireetreinamentos.com.br/sitemap.xml
