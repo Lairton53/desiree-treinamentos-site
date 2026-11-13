@@ -111,7 +111,7 @@
   }
 
   async function seguir() {
-    if (!idAutorizacao) return falhar("Link sem authorization_id. Comece de novo pelo claude.ai (Conectores > Conectar).");
+    if (!idAutorizacao) { mostrar(""); return falhar("Link sem authorization_id. Comece de novo pelo claude.ai (Conectores > Conectar)."); }
     const { data: { session } } = await sb.auth.getSession();
     $("sair").hidden = !session;
     if (!session) return mostrar("f-login");
@@ -128,7 +128,12 @@
       return mostrar("f-cadastro-mfa");
     }
     const { data: det, error: e3 } = await sb.auth.oauth.getAuthorizationDetails(idAutorizacao);
-    if (e3) return falhar(`Pedido de autorização inválido ou vencido (${e3.message}). Comece de novo pelo claude.ai.`);
+    if (e3) {
+      // login e código já estão OK: esconde os formulários para não parecer que travou no MFA
+      mostrar("");
+      return falhar(`Login e código OK, mas este pedido de autorização é inválido ou venceu (${e3.message}). ` +
+        "Volte ao claude.ai e clique em Conectar de novo: a próxima tela já vai direto para Aprovar.");
+    }
     if (!("authorization_id" in det)) { location.href = det.redirect_url; return; }   // já aprovado antes
     let host = "";
     try { host = new URL(det.redirect_uri).hostname; } catch { /* inválido */ }
