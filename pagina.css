@@ -96,6 +96,30 @@ main{padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px)}
 }
 .sem-turma{margin-top:clamp(2.2rem,5vw,3.6rem);padding-top:1.7rem;border-top:1px solid var(--line);color:var(--ink-soft);max-width:56ch}
 
+/* inscrição na agenda de cursos */
+.agenda{margin-top:clamp(3rem,7vw,5rem);background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:clamp(1.6rem,4vw,2.6rem);display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 3rem;align-items:start}
+.agenda{scroll-margin-top:96px}
+.agenda h2{font-size:clamp(1.4rem,2.8vw,2rem);max-width:20ch}
+.agenda>div p{margin-top:.6rem;color:var(--ink-soft);max-width:40ch;font-size:.98rem}
+.agenda form{display:grid;gap:.7rem}
+.agenda label{font-size:.9rem;font-weight:600}
+.agenda input[type=email]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);
+  border-radius:8px;padding:.7rem .85rem}
+.agenda input[type=email]:focus-visible,.agenda input[type=checkbox]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.agenda .aceite{display:flex;gap:.6rem;align-items:flex-start;font-weight:400;font-size:.95rem;line-height:1.45;cursor:pointer}
+.agenda .aceite input{width:1.15rem;height:1.15rem;margin:.15rem 0 0;flex:none;accent-color:var(--accent)}
+.agenda .btn{justify-self:start;border:0;font:inherit;font-weight:600;cursor:pointer}
+.agenda .btn[disabled]{opacity:.6;cursor:default}
+.agenda-aviso{min-height:1.4em;font-size:.92rem}
+.agenda-aviso.erro{color:#B3261E}
+.agenda-aviso.ok{color:var(--accent-ink)}
+.agenda-nota{font-size:.82rem;color:var(--ink-soft)}
+.agenda-nota a{color:var(--accent-ink);text-underline-offset:3px}
+:root[data-theme="dark"] .agenda-aviso.erro{color:#FFB4AB}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .agenda-aviso.erro{color:#FFB4AB}}
+@media(max-width:820px){.agenda{grid-template-columns:1fr}}
+
 .fecho{margin-top:clamp(3rem,7vw,5rem);background:#0F565E;color:#fff;border-radius:12px;padding:clamp(1.8rem,4vw,3rem);
   display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
 .fecho h2{font-size:clamp(1.4rem,2.8vw,2rem);color:inherit;max-width:22ch}
