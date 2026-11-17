@@ -60,6 +60,21 @@
     <p class="sem-turma" id="semTurma" hidden>A próxima agenda será publicada aqui assim que as datas forem confirmadas com as entidades.</p>
     <noscript><p class="sem-turma">Para saber as próximas turmas, escreva para <!--email_off--><a href="mailto:desiree@desireetreinamentos.com.br">desiree@desireetreinamentos.com.br</a><!--/email_off-->.</p></noscript>
 
+    <section class="agenda" id="agenda" aria-labelledby="agendaTitulo">
+      <div>
+        <h2 id="agendaTitulo">Receba a agenda de cursos por e-mail.</h2>
+        <p>Avisamos quando uma nova turma abrir. Você sai quando quiser, pelo link de descadastro de cada mensagem.</p>
+      </div>
+      <form id="agendaForm" novalidate>
+        <label for="agendaEmail">Seu e-mail</label>
+        <input type="email" id="agendaEmail" name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="voce@empresa.com.br" required>
+        <label class="aceite"><input type="checkbox" id="agendaAceite" name="aceite"> <span>Quero receber por e-mail a agenda e os convites de cursos da Desirée Treinamentos.</span></label>
+        <button class="btn btn-primary" type="submit" id="agendaBotao">Receber a agenda</button>
+        <p class="agenda-aviso" id="agendaAviso" role="status" aria-live="polite"></p>
+        <p class="agenda-nota">Guardamos o seu e-mail, a data e a página do pedido. Veja a <a href="/privacidade/">política de privacidade</a>.</p>
+      </form>
+    </section>
+
     <div class="fecho">
       <div>
         <h2>Quer levar esse trabalho para a sua empresa?</h2>
@@ -107,6 +122,7 @@
   }
   desenharTurmas(window.turmasFuturas());
 </script>
+<script src="/agenda.js" defer></script>
 <script src="/clique.js" defer></script>
 </body>
 </html>
